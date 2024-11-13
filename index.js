@@ -8,11 +8,15 @@ const http = require('http');
 const app = express();
 
 const cors = require('cors');
-app.use(cors({
-    origin: 'https://votre-frontend-domaine.com', // Remplacez par le domaine de votre frontend
+
+
+const corsOptions = {
+    origin: ['http://localhost:5000', 'https://gossip-ebon.vercel.app'],
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type']
-}));
+};
+
+app.use(cors(corsOptions));
 
 const server = http.createServer(app);
 const io = require("socket.io")(server);
@@ -34,8 +38,7 @@ const Message = mongoose.model("Message", messageSchema);
 
 // Middleware pour parser les requêtes JSON
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "/public")));
-
+app.use(express.static(path.join(__dirname+"/public")));
 // Route pour sauvegarder un message
 app.post("/api/messages", async (req, res) => {
     const { username, text } = req.body;
