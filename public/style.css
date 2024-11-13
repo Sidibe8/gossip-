@@ -1,0 +1,272 @@
+/* Style général de l'application */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: #F0F0F0; /* Fond léger comme Snapchat */
+    color: #333;
+}
+
+/* App Container */
+.app {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* Cache tous les écrans par défaut */
+.app > .screen {
+    display: none;
+}
+
+/* Affiche l'écran actif */
+.app > .screen.active {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* Écran de connexion */
+.join-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 25px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 400px;
+}
+
+.join-screen h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #4CAF50; /* Couleur principale de Snapchat */
+}
+
+.join-screen input {
+    padding: 12px 20px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    width: 100%;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.join-screen button {
+    padding: 12px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    width: 100%;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.join-screen button:hover {
+    background-color: #45a049;
+}
+
+/* Écran de chat */
+.chat-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background-color: #ffffff;
+    border-radius: 25px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 400px;
+    padding: 20px;
+    position: relative;
+    height: 80vh;
+}
+
+/* Messages */
+.messages {
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    max-height: calc(80vh - 10px); /* Ajuster la hauteur en fonction de la hauteur de la fenêtre et de la zone de saisie */
+}
+
+/* Hover sur le bouton d'envoi */
+#send-message:hover {
+    background-color: #45a049;
+    transform: translateY(-2px); /* Légère animation de survol */
+}
+
+/* Animation fade-in pour les nouveaux messages */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px); /* Départ légèrement en bas */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Arrive à sa position d'origine */
+    }
+}
+
+/* Classe fade-in pour appliquer l'animation */
+.message.fade-in {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+
+/* Bulle de message de l'utilisateur */
+.message.my-message {
+    background-color: #4CAF50; /* Vert Snapchat */
+    color: white;
+    align-self: flex-end;
+    border-radius: 15px;
+    padding: 10px 15px;
+    max-width: 75%;
+    margin: 10px 0;
+    font-size: 16px;
+    word-wrap: break-word; /* Permet de couper les mots trop longs */
+}
+
+/* Bulle de message de l'autre utilisateur */
+.message.other-message {
+    background-color: #e4e6eb; /* Gris clair */
+    color: #333;
+    align-self: flex-start;
+    border-radius: 15px;
+    padding: 10px 15px;
+    max-width: 75%;
+    margin: 10px 0;
+    font-size: 16px;
+    word-wrap: break-word; /* Permet de couper les mots trop longs */
+}
+
+
+/* Nom de l'expéditeur */
+.name {
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+/* Texte du message */
+.text {
+    font-size: 16px;
+}
+
+/* Zone de saisie de texte */
+.typebox {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid #ddd;
+    padding: 10px 20px;
+    background-color: #f7f7f7;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    border-radius: 0 0 25px 25px;
+}
+
+/* Input de message */
+#message-input {
+    flex: 1;
+    padding: 12px 20px;
+    border-radius: 25px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+/* Bouton d'envoi de message */
+#send-message {
+    padding: 12px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+#send-message:hover {
+    background-color: #45a049;
+}
+
+/* Bouton d'Exit */
+#exit-chat {
+    background-color: transparent;
+    border: none;
+    color: #4CAF50;
+    font-size: 14px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+}
+#exit-chat:hover {
+    text-decoration: underline;
+}
+.collor {
+    color: #45a049;
+}
+
+
+/* Adaptation pour les écrans de téléphone */
+@media (max-width: 600px) {
+    /* Conteneur de l'application */
+    .app {
+        padding: 0;
+        width: 100%;
+        height: 100vh;
+        max-width: 100%;
+    }
+
+    /* Conteneurs des écrans de connexion et de chat */
+    .join-screen, .chat-screen {
+        width: 100%;
+        max-width: 100%;
+        border-radius: 0; /* Suppression des coins arrondis pour un effet plein écran */
+        box-shadow: none;
+    }
+
+    /* Messages */
+    .messages {
+        max-height: calc(100vh - 160px); /* Ajustement pour qu'il reste de la place pour le header et le typebox */
+    }
+
+    /* Zone de saisie et boutons */
+    .typebox {
+        padding: 10px;
+    }
+
+    /* Boutons d'entrées et boutons d'envoi */
+    #message-input {
+        font-size: 14px;
+        padding: 10px;
+        margin-right: 5px;
+    }
+    #send-message {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+
+    /* Bouton de déconnexion */
+    #exit-chat {
+        font-size: 12px;
+        top: 15px;
+        right: 15px;
+    }
+}
