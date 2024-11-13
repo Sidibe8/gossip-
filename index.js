@@ -6,6 +6,14 @@ const http = require('http');
 
 // Initialisation de l'application et des variables serveur
 const app = express();
+
+const cors = require('cors');
+app.use(cors({
+    origin: 'https://votre-frontend-domaine.com', // Remplacez par le domaine de votre frontend
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type']
+}));
+
 const server = http.createServer(app);
 const io = require("socket.io")(server);
 
