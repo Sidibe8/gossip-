@@ -32,6 +32,8 @@
         app.querySelector(".join-screen").classList.remove("active");
         app.querySelector(".chat-screen").classList.add("active");
 
+
+        // s
         // Charger l'historique des messages de la base de données pour cet utilisateur
         fetch("/api/messages")
             .then(response => response.json())
